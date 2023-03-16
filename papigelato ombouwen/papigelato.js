@@ -4,7 +4,7 @@ var customerinfo = {
     'aantaltypeijs' : 0,
     'smaken' : {'aardbei':0,'chocolade':0,'vanille':0,},
     'topping' : {'geen':0,'slagroom':0,'sprinkels':0,'caramel':0,},
-    'prijzen' : {'prijshoorentje':1.25,'prijsbakje':0.75,'prijsbolletje':0.95,'prijsslagroom':0.5,'prijssprinkels':0.3,'prijscaramel':0.4,'prijsliter':9.8,}, 
+    'prijzen' : {'prijshoorentje':1.25,'prijsbakje':0.75,'prijsbolletje':0.95,'prijsslagroom':0.5,'prijssprinkels':0.3,'prijscaramel':0.4,'prijsgeen':0.0,'prijsliter':9.8,}, 
 }
 
 
@@ -42,6 +42,22 @@ function smaken (){
     }
     topping()
 }
+
+function bon(){
+    toppingprijstotaal = ((customerinfo['prijzen']['prijsslagroom'] * customerinfo['topping']['slagroom']) + (customerinfo['prijzen']['prijssprinkels'] * customerinfo['topping']['sprinkels']) + (customerinfo['prijzen']['prijscaramel'] * customerinfo['topping']['caramel']) + (customerinfo['prijzen']['prijsgeen'] * customerinfo['topping']['geen']))
+    totaalprijsnormaal = toppingprijstotaal +(customerinfo['aantaltypeijs'] * customerinfo['prijzen']['prijsbolletje'] )
+    totaalprijsparticulier = (customerinfo['aantaltypeijs'] * customerinfo['prijzen']['prijsliter']) 
+    if (customerinfo['particulier/zakelijk'] == 1) {
+        alert( 'Bedankt voor het bestellen bij Papi Gelato!\n -----------------------------------------------\nHier is uw bon:\n Aantal bolletjes = '+ (customerinfo['aantaltypeijs']) +' x 0.95 =  '+((customerinfo['aantaltypeijs']) * (customerinfo['prijzen']['prijsbolletje']) )+'\n        \n Topping = '+ (toppingprijstotaal)+'\n Totaal = '+ totaalprijsnormaal +' \n-----------------------------------------------\n'
+        )
+ 
+    }
+    if (customerinfo['particulier/zakelijk'] == 2) {
+        alert( 'Bedankt voor het bestellen bij Papi Gelato!\n -----------------------------------------------\nHier is uw bon:\n Aantal liters = '+ (customerinfo['aantaltypeijs']) +' x 9.8 = '+((customerinfo['aantaltypeijs']) * (customerinfo['prijzen']['prijsliter']) )+' Totaal = '+ totaalprijsparticulier +' \n -----------------------------------------------\n'
+        )
+    }
+}
+
 function topping (){
         gekozentopping = prompt('welke topping wilt u? geen / slagroom / sprinkels / caramel')
         if (gekozentopping == 'geen') {
@@ -65,17 +81,5 @@ function topping (){
             startfunctie()
         }
 }
-function bon(){
-    if (customerinfo['particulier/zakelijk'] == 1) {
-        alert( 'Bedankt voor het bestellen bij Papi Gelato!\n -----------------------------------------------\nHier is uw bon:\n Aantal bolletjes = '+ (customerinfo['aantaltypeijs']) +' x 0.95 =  '+((customerinfo['aantaltypeijs']) * (customerinfo['prijzen']['prijsbolletje']) )+'\n        \n Topping = '+ (toppingprijstotaal)+'\n-----------------------------------------------\n'
-        )
- 
-    }
-    if (customerinfo['particulier/zakelijk'] == 2) {
-        alert( 'Bedankt voor het bestellen bij Papi Gelato!\n -----------------------------------------------\nHier is uw bon:\n Aantal liters = '+ (customerinfo['aantaltypeijs']) +' x 9.8 = '+((customerinfo['aantaltypeijs']) * (customerinfo['prijzen']['prijsliter']) )+' \n -----------------------------------------------\n'
-        )
-    }
-}
 
 startfunctie()
-toppingprijstotaal = ((customerinfo['prijzen']['prijsslagroom'] * customerinfo['topping']['slagroom']) + (customerinfo['prijzen'][''] * customerinfo['topping']['sprinkels']) + (customerinfo['prijzen']['prijscaramel'] * customerinfo['topping']['caramel']))
